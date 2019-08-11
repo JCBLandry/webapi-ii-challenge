@@ -1,14 +1,14 @@
 const express = require('express');
 
-const db = require('./data/db.js');
+const posts = require('./data/db.js');
 
 const router = express.Router();
 // URI: /api/hubs
 
-router.post('/api/posts', async (req, res) => {
+router.post('/', async (req, res) => {
   
   try{
-      const newPost = await db.insert(req.body);
+      const newPost = await posts.insert(req.body);
       res.status(201).json(newPost);
   } catch {
       console.log(error);
@@ -18,7 +18,7 @@ router.post('/api/posts', async (req, res) => {
   }
 });  
 
-router.post('/api/posts/:id/comments', async (req, res) => {
+router.post('/:id/comments', async (req, res) => {
   const messageInfo = {...req.body, post_id: req.params.id };
 
   try{
@@ -32,9 +32,9 @@ router.post('/api/posts/:id/comments', async (req, res) => {
   }
 });  
 
-router.get('/api/posts', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const postsList = await db.find(req.query);
+    const postsList = await posts.find(req.body);
     res.status(200).json(postsList);
   } catch (error) {
     // log error to database
@@ -44,7 +44,6 @@ router.get('/api/posts', async (req, res) => {
     });
   }
 });
-
 
 
 

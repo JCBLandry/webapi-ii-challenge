@@ -4,9 +4,9 @@ const PostsRouter = require('./posts-router.js');
 
 const server = express();
 
-
-server.use('/api/post', PostsRouter);
 server.use(express.json());
+server.use('/api/posts', PostsRouter);
+
 
 server.get('/', (req, res) => {
     res.send(`
@@ -15,7 +15,5 @@ server.get('/', (req, res) => {
     `);
   });
 
-// add an endpoint that returns all the messages for a hub
-// add an endpoint for adding new message to a hub
 
 module.exports = server;
