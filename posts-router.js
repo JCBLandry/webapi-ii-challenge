@@ -1,6 +1,6 @@
 const express = require('express');
 
-const posts = require('./data/db.js');
+const db = require('./data/db.js');
 
 const router = express.Router();
 // URI: /api/hubs
